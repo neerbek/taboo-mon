@@ -1,0 +1,25 @@
+==run==
+python3 monsantoLabelEntries.py
+diff monsantoLabelEntries.json monsantoLabelEntries2.json
+# just a test
+
+==known issues==
+Some has no monsantoId,
+
+Document number 44 is contains two entries but they point to the same uri. This an error, I might try to fix at some point
+
+Some of the documents have empty description because the description was embedded in the uriText (because of error in pdfminer). For now we leave it there
+
+We might have a small issue [knock-knock] with encoding/decoding from the original pdf and to filename paths
+
+I haven't manually checked bates (uriText) and description (text) just checked that it seems ok at various points in the data.
+
+==text extract issues==
+images of text are not translated:
+Monsanto-Inert-Ingredient-Submission-to-EPA-2010-and-Internal-Emails-Related-to-Inerts.pdf
+Custodial-File-for-Dr-Mark-Martens-Former-Monsanto-Toxicology-Director-EU-Africa.pdf
+(maybe thats it?)
+
+
+==Files to check for good sentence splitting==
+Monsanto-EU-Executive-Richard-Garnett-Emails\ David-Saltmiras-Hiroo-Wakimori-Monsanto-Japan-About-TAC-Study.txt 
