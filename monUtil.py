@@ -12,6 +12,9 @@ import time
 import subprocess
 import json
 
+
+from similarity import load_trees
+
 class StringWrapper:
     def __init__(self):
         self.val = ""
@@ -21,6 +24,27 @@ class StringWrapper:
 
     def get(self):
         return self.val
+
+class MonsantoTree:
+    def __init__(self, tree):
+        if tree is None:
+            raise Exception("Cannot initialize monTree from empty tree")
+        self.index = int(tree.syntax)
+        self.monsantoId = tree.word
+        self.label = int(tree.right.syntax)
+        self.filename = tree.right.word
+        self.tree = tree.left
+
+    def asSingleTree(self):
+        n = load_trees.Node()
+        n.syntax = "{}".format(self.index)
+        n.word = self.monsantoId
+        self.tree.parent = n
+        n.left = self.tree
+        nRight = n.add_child()
+        nRight.syntax = "{}".format(self.label)
+        nRight.word = self.filename
+        return n
 
 class MonsantoDocument:
     def __init__(self, count, monsantoId, label):
