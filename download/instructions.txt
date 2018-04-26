@@ -1,0 +1,30 @@
+# downloading Monsanto docs from lawfirm
+
+cd download
+
+wget -O index.html http://baumhedlundlaw.com/pdf/monsanto-documents/
+
+xmllint --html --xpath //a/@href index.html | sed 's/ href="\([^"]*\)"/\1\n/g' > links.txt
+grep -v "?C=N;O=D$" links.txt | grep -v ";O=A$" | grep -v "^/pdf/$" > links2.txt
+grep "/$" links2.txt && echo "have further directories"
+
+python3 download.py --inputfile=links2.txt --outdir=../data_monsanto/2018-03-29 --baseurl="http://baumhedlundlaw.com/pdf/monsanto-documents/"
+
+# zip file
+wget -O ../data_monsanto/2018-03-29/monsanto-papers-zip-file.zip http://baumhedlundlaw.com/pdf/monsanto-documents/monsanto-papers-zip-file.zip
+
+# subdir
+wget -O daubert-brief.html http://baumhedlundlaw.com/pdf/monsanto-documents/daubert-brief
+xmllint --html --xpath //a/@href daubert-brief.html | sed 's/ href="\([^"]*\)"/\1\n/g' > daubert-brief-links.txt
+grep -v "?C=N;O=D$" daubert-brief-links.txt | grep -v ";O=A$" | grep -v "^/pdf/monsanto-documents/$" > daubert-brief-links2.txt
+grep "/$" daubert-brief-links2.txt && echo "have further directories"
+
+mkdir ../data_monsanto/2018-03-29/daubert-brief
+python3 download.py --inputfile=daubert-brief-links2.txt --outdir=../data_monsanto/2018-03-29/daubert-brief --baseurl="http://baumhedlundlaw.com/pdf/monsanto-documents/daubert-brief/"
+
+
+# 262 docs
+# 1 zip file
+# 125 docs
+
+rm daubert-brief-links.txt daubert-brief-links2.txt daubert-brief.html index.html links.txt links2.txt 
