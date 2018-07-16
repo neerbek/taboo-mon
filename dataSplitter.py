@@ -20,6 +20,7 @@ from importlib import reload
 reload(ai_util)
 allTreesFile = "../data_monsanto/trees/20180418/all_trees.txt"
 allTrees = load_trees.get_trees(allTreesFile)
+# get_trees done. Count=9827. Roots with words count 9827
 
 trees = [monUtil.MonsantoTree(t) for t in allTrees]
 load_trees.put_trees("tmp.txt", [t.asSingleTree() for t in trees])
@@ -55,6 +56,22 @@ cleaner.reportFindings()
 trees = res
 len(trees)
 # 7537 (orig: 9827)
+
+# ## length buckets
+counts = []
+for t in trees:
+    counts.append(load_trees.count_leaf_nodes(t.tree))
+len(counts)
+import numpy
+data = numpy.array(counts)
+print(max(counts))
+print(min(counts))
+bins = numpy.array([6, 10, 20, 30, 40, 50, 75, 100, 150, 202])
+classes = numpy.digitize(data, bins)
+unique, counts = numpy.unique(classes, return_counts=True)
+print(dict(zip(unique, counts)))
+# {0: 1175, 1: 1122, 2: 2428, 3: 2062, 4: 3165, 5: 573, 6: 195, 7: 54}
+# punctuation '.' counts as "word"
 
 
 labels = [t.label for t in trees]
@@ -101,6 +118,9 @@ trees3 = ai_util.shuffleList(trees3, RandomState(630))
 
 print(2 * len(trees), len(trees0), len(trees1), len(trees2), len(trees3))
 print(len(trees0) + len(trees1) + len(trees2) + len(trees3))
+# 15074 6932 2892 2702 2548
+# 15074
+# before filtering
 # 19654 8186 3360 4618 3490
 # 19654
 
@@ -129,6 +149,49 @@ print(len(trees3), len(trees3Train) + len(trees3Val) + len(trees3Test), len(tree
 # 2892 2892 2200 340 352
 # 2702 2702 2100 300 302
 # 2548 2548 1950 300 298
+
+def printPositives(full, train, val, test, label):
+    res = []
+    tmp = [t for t in full if t.label == label]
+    res.append(len(tmp))
+    tmp = [t for t in train if t.label == label]
+    res.append(len(tmp))
+    tmp = [t for t in val if t.label == label]
+    res.append(len(tmp))
+    tmp = [t for t in test if t.label == label]
+    res.append(len(tmp))
+    print(res[0], res[1] + res[2] + res[3], res[1], res[2], res[3])
+
+def printNegatives(full, train, val, test, label):
+    res = []
+    tmp = [t for t in full if t.label != label]
+    res.append(len(tmp))
+    tmp = [t for t in train if t.label != label]
+    res.append(len(tmp))
+    tmp = [t for t in val if t.label != label]
+    res.append(len(tmp))
+    tmp = [t for t in test if t.label != label]
+    res.append(len(tmp))
+    print(res[0], res[1] + res[2] + res[3], res[1], res[2], res[3])
+
+
+printPositives(trees0, trees0Train, trees0Val, trees0Test, 0)
+printNegatives(trees0, trees0Train, trees0Val, trees0Test, 0)
+printPositives(trees1, trees1Train, trees1Val, trees1Test, 1)
+printNegatives(trees1, trees1Train, trees1Val, trees1Test, 1)
+printPositives(trees2, trees2Train, trees2Val, trees2Test, 2)
+printNegatives(trees2, trees2Train, trees2Val, trees2Test, 2)
+printPositives(trees3, trees3Train, trees3Val, trees3Test, 3)
+printNegatives(trees3, trees3Train, trees3Val, trees3Test, 3)
+
+# 3466 3466 2949 245 272
+# 3466 3466 2951 255 260
+# 1446 1446 1099 176 171
+# 1446 1446 1101 164 181
+# 1351 1351 1048 154 149
+# 1351 1351 1052 146 153
+# 1274 1274 951 170 153
+# 1274 1274 999 130 145
 
 def outputTrees(treeList, label):
     trees0Train = treeList[0]

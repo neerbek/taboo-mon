@@ -269,6 +269,32 @@ for i in range(count):
 #         for j in range(len(looper.result[i].otherMonsantoIds)):
 #             print(i, " - Count", looper.result[i].count, " - OtherMonID", looper.result[i].otherMonsantoIds[j])
 
+i = 21
+print(i, " - Count", looper.result[i].count, " - MonID", looper.result[i].monsantoId, " - link:", links[i], " - uri text", looper.result[i].uriText, " - desc", looper.result[i].text.val)
+dir(looper.result[i])
+dir(looper.result[i].text)
+
+
+count = len(looper.result)
+labels = {}
+for i in range(count):
+    if looper.result[i].label not in labels.keys():
+        labels[looper.result[i].label] = 0
+    labels[looper.result[i].label] += 1
+print(labels)
+
+count = len(looper.result)
+labels = {}
+added = 0
+for i in range(count):
+    if looper.result[i].label not in labels.keys():
+        labels[looper.result[i].label] = 0
+    labels[looper.result[i].label] += len(looper.result[i].otherMonsantoIds)
+    if looper.result[i].monsantoId not in looper.result[i].otherMonsantoIds:
+        labels[looper.result[i].label] += 1
+        added += 1
+print(labels)
+print(added)
 
 filename = "monsantoLabelEntries.json"
 monUtil.saveJSONList(filename, looper.result)
@@ -282,4 +308,5 @@ filename2 = "monsantoLabelEntries2.json"
 monUtil.saveJSONList(filename2, tmp)
 # diff monsantoLabelEntries.json monsantoLabelEntries2.json
 # (no diff) success!
+
 
