@@ -34,6 +34,7 @@ def usage(exitCode=0):
 
 # parse input
 argv = sys.argv[1:]  # first arg is filename
+# argv = "-s 0 -e -1 -o jantmp_trees.txt".split()
 try:
     opts, args = getopt.getopt(argv, "hd:l:s:e:o:", ["help", "datadir=", "labelfile=", "start=", "end=", "outfile="])
 except getopt.GetoptError:
@@ -104,6 +105,32 @@ for i, text in enumerate(cleanDocs):
 # i = 0
 # for indexedSentence in indexedSentenceList[i]:
 #     print(indexedSentence)
+
+# count = 0
+# for sentences in indexedSentenceList:
+#     count += len(sentences)
+# print(count)
+# counts = []
+# for sentences in indexedSentenceList:
+#     for sentence in sentences:
+#         counts.append(len(sentence.sentence))
+# len(counts)
+# import numpy
+# data = numpy.array(counts)
+# print(max(counts))
+# bins = numpy.array([5, 20, 75, 125, 300, 500, 1000])
+# classes = numpy.digitize(data, bins)
+# unique, counts = numpy.unique(classes, return_counts=True)
+# print(dict(zip(unique, counts)))
+# # {0: 1175, 1: 1122, 2: 2428, 3: 2062, 4: 3165, 5: 573, 6: 195, 7: 54}
+
+# count = 0
+# val = 1
+# for c in counts:
+#     if c == val:
+#         count += 1
+# print("{}:".format(val), count)
+
 
 treeList = []
 if endindex == -1:
