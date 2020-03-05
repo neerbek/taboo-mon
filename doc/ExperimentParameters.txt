@@ -1,0 +1,65 @@
+This is a loose set of notes for our paper to LREC 2020
+
+"A Real-World Data Resource of Complex Sensitive Sentences Based on Documents from the Monsanto Trial"
+Jan Neerbek, Morten Eskildsen, Peter Dolog, Ira Assent
+LREC 2020
+
+
+Experiments: all data is split in train, dev and test. We train on train data and validate on dev set. Final accuracies are reported on test set.
+
+parameters:
+-nx - word embedding size (GloVe)
+-nh - hidden state size (all experiments used one layer)
+-lr - learn rate
+-L1_reg - L1 regularization
+-L2_reg - L2 regularization
+-n_epoch - number of full epochs to run (-1 means stopped when convergence)
+-retain_probability - 1 - dropout probability
+-batch_size - size of mini-batch (here always 50)
+
+Baseline LSTM all models trained with -nx 100 -nh 100 using adagrad
+
+RecNN:
+Silver dataset models:
+trees0 (GHOST):  -nx 100 -nh 100 -lr 0.001 -L1_reg 0 -L2_reg 0.0001 -n_epochs -1 -retain_probability 0.9 -batch_size 50  # mon001
+trees1 (TOXIC):  -nx 100 -nh 100 -lr 0.001 -L1_reg 0 -L2_reg 0 -n_epochs -1 -retain_probability 1 -batch_size 50         # mon002
+trees2 (CHEMI):   -nx 100 -nh 100 -lr 0.0001 -L1_reg 0 -L2_reg 0 -n_epochs -1 -retain_probability 0.9 -batch_size 50     # mon003
+trees3 (REGUL):    -nx 100 -nh 100 -lr 0.001 -L1_reg 0 -L2_reg 0 -n_epochs -1 -retain_probability 0.9 -batch_size 50     # mon004
+
+
+Golden dataset models (no transfer learning):
+trees0 (GHOST):
+# mon085
+export LEARN_RATE=0.002
+export L1_REG=0
+export L2_REG=0.0001
+export RETAIN_PROBABILITY=0.9
+export BATCH_SIZE=25
+export LAYER_SIZE=200
+
+trees1 (TOXIC):
+# mon086
+export LEARN_RATE=0.001
+export L1_REG=0
+export L2_REG=0.0001
+export RETAIN_PROBABILITY=1
+export BATCH_SIZE=25
+export LAYER_SIZE=200
+
+trees2 (CHEMI):
+# mon087
+export LEARN_RATE=0.0005
+export L1_REG=0
+export L2_REG=0
+export RETAIN_PROBABILITY=0.9
+export BATCH_SIZE=25
+export LAYER_SIZE=100
+
+trees3 (REGUL):
+# mon088
+export LEARN_RATE=0.001
+export L1_REG=0
+export L2_REG=0
+export RETAIN_PROBABILITY=0.9
+export BATCH_SIZE=25
+export LAYER_SIZE=100

@@ -1,0 +1,22 @@
+This is a informal set of notes on the annotation process for our paper to LREC 2020
+
+"A Real-World Data Resource of Complex Sensitive Sentences Based on Documents from the Monsanto Trial"
+Jan Neerbek, Morten Eskildsen, Peter Dolog, Ira Assent
+LREC 2020
+
+
+# =========================================================
+Annotation Guidelines:
+
+The process: We meet for workshop. The Monsanto story is presented and the description above is available. There was discussion on the annotation types/topics and what it means for a sentence to belong to one of these types. During the first few annotations the annotators had the possibility of asking clarifying questions.
+
+The description:
+\item $GHOST$, the documents concerning article writing and peer-reviewing by Monsanto paid people. Hiding the Monsanto connection, as well as concerning efforts in pressuring journals to retract damning studies in a way such that Monsanto is not seen as providing the critique.
+\item $TOXIC$, the documents concerning discussions and testing of the chemical glyphosate which is part of Roundup. This includes in particular the toxicity of glyphosate and decisions not to fund further studies, decisions not to do requested studies or provide data to regulators. Discussions in which ways Roundup can and cannot be considered toxic.
+\item $CHEMI$, Monsanto articles on Roundup chemistry when Roundup is used in nature. Internal email discussions on Monsanto studies as well as external studies and measurements together with findings, discussions on which questions are answered or need to be answered by Monsanto paid studies. Discussions on which paid studies are too ``risky'', discussions on not publishing (hiding) bad (unexpected) results.
+\item $REGUL$, the documents concerning discussions of rewarding people for science that protect Roundup business. Documents on active efforts to monitor and influence regulative bodies for possible problematic rulings related to Roundup. Documents on planning and discussions where specific people from regulatory bodies are being convinced to lower the rating or concerns for Roundup/glyphosate.
+
+Learnings: REGUL was deemed by annotators to be the most difficult to label on a sentence level. They suggested that the REGUL (which deals with legal law) has a lot of implied knownledge that is not anywhere in the documents.
+Also, in our process we randomized the sentences selected for labeling. The annotators suggests that we for next round instead select sections of documents for labeling. Such that an annotator would be presented for (say) 5 sentences in sequence for annotation.
+
+
