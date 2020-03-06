@@ -43,3 +43,5 @@ To label sensitive:
 You can highlight parts of the sentence and click "Annotate Sensitive" (or use shortcut key 's'). You can highlight complete sentence or multiple places in sentence where sensitive information is revealed.
 
 To save annotations. Click "Save Session" (middle of left side) and select a filename to save to.
+
+Enjoy!
