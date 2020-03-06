@@ -4,7 +4,11 @@ This is a informal set of notes on the annotation process for our paper to LREC 
 Jan Neerbek, Morten Eskildsen, Peter Dolog, Ira Assent
 LREC 2020
 
-
+# =========================================================
+In this document:
+ * Annotation Guidelines
+ * Annotation Tool
+ 
 # =========================================================
 Annotation Guidelines:
 
@@ -20,3 +24,22 @@ Learnings: REGUL was deemed by annotators to be the most difficult to label on a
 Also, in our process we randomized the sentences selected for labeling. The annotators suggests that we for next round instead select sections of documents for labeling. Such that an annotator would be presented for (say) 5 sentences in sequence for annotation.
 
 
+# =========================================================
+Annotation Tool:
+
+The tool is available here: https://github.com/FrodePedersen/AnnotationGUI.git
+A screenshot of the UI should be co-located with this file and found here: ./Screenshot_Annotation_Tool.png
+
+To start the tool: python3 main.py
+
+To load data:
+1) Load the description file: click button "Labeling Guide" (lower left corner) and select the file here: ./monsantoDataEntries.json
+2) Load the data file: click the button "Load Data" (3rd button from the top, left side), you can use sample: ./sample_250_4_labels.txt
+3) Select a user (hardcoded list, can be changed easily in code): Select dropdown "Select User" (2nd button from the bottom, left side)
+
+You can click the arrow buttons left, right to go between sentences. There is a context bar with additional information to the right.
+
+To label sensitive:
+You can highlight parts of the sentence and click "Annotate Sensitive" (or use shortcut key 's'). You can highlight complete sentence or multiple places in sentence where sensitive information is revealed.
+
+To save annotations. Click "Save Session" (middle of left side) and select a filename to save to.

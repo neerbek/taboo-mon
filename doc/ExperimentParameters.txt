@@ -1,4 +1,4 @@
-This is a loose set of notes for our paper to LREC 2020
+Hyperparameters and notes for experiments for our paper to LREC 2020
 
 "A Real-World Data Resource of Complex Sensitive Sentences Based on Documents from the Monsanto Trial"
 Jan Neerbek, Morten Eskildsen, Peter Dolog, Ira Assent
